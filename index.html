@@ -18,6 +18,7 @@
         position: relative;
         width: 100px;
         height: 100px;
+        animation: bounce 2s infinite ease-in-out;
       }
       .petal {
         position: absolute;
@@ -26,6 +27,8 @@
         background: red;
         border-radius: 50%;
         transform-origin: bottom center;
+        animation: hearbeat 1.5s infinite ease-in-out;
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
       }
       .petal:nth-child(1) { transform: rotate(0deg) translateY(-30px); }
       .petal:nth-child(2) { transform: rotate(45deg) translateY(-30px); }
@@ -43,6 +46,19 @@
         border-radius: 50%;
         top: 30px;
         left: 30px;
+        box-shadow: 0 0 15px rgba(255, 255, 0, 0.9);
+      }
+
+      /* Animation for hearbeat effect */
+      @keyframes hearbeat {
+        0%, 100% {transform: scale(1); }
+        50% { transform: scale(1.2); }
+      }
+
+      /* Animation for bouncing */
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
       }
     </style>
   </head>
