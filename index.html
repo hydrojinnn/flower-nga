@@ -13,12 +13,14 @@
         height: 100vh;
         background-color: pink;
         margin: 0;
+        overflow: hidden;
       }
       .flower {
         position: relative;
         width: 100px;
         height: 100px;
         animation: bounce 2s infinite ease-in-out;
+        cursor: pointer;
       }
       .petal {
         position: absolute;
@@ -38,15 +40,18 @@
       .petal:nth-child(6) { transform: rotate(225deg) translateY(-30px); }
       .petal:nth-child(7) { transform: rotate(270deg) translateY(-30px); }
       .petal:nth-child(8) { transform: rotate(315deg) translateY(-30px); }
+
+      /* Glowing Heart */
       .center {
         position: absolute;
         width: 40px;
         height: 40px;
-        background: yellow;
+        background: red;
         border-radius: 50%;
         top: 30px;
         left: 30px;
-        box-shadow: 0 0 15px rgba(255, 255, 0, 0.9);
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.9);
+        animation: glow 1.5s infite alternate;
       }
 
       /* Animation for hearbeat effect */
@@ -56,10 +61,35 @@
       }
 
       /* Animation for bouncing */
-      @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
+      @keyframes glow {
+        0% { box-shadow: 0 0 15px rgba(225, 0, 0, 0.5); }
+        100% { box-shadow: 0 0 30px rgba(255, 0, 0, 1); }
       }
+
+      /* Floationg hearts animation */
+      .heart {
+        position: absolute;
+        color: red;
+        font-size: 20px
+        animation: float 4s linear infinite;
+        opacity: 0.8;
+      }
+      @keyframes float {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(-100vh); opacity: 0; }
+      }
+
+      /* Message Box */
+      .message {
+        position: absolute;
+        bottom: 50px;
+        background: white;
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 18px;
+        display: none;
+        color: red;
+        font-weight: bold;
     </style>
   </head>
   <body>
@@ -74,5 +104,31 @@
       <div class = "petal"></div>
       <div class = "center"></div>
     </div>
+    <script>
+      document.querySelector(".flower").addEventListener("click", function() {
+        let message = document.createElement("div");
+        message.classList.add("message");
+        message.innerText = "Happy Valentine's Day! 💖";
+        document.body.appendChild(message);
+
+        setTimeout(() => {
+          message.style.display = "block";
+        }, 300);
+
+        // Generate floating hearts
+        for (let i = 0; i < 10; i++) {
+          let heart = document.createElement("div");
+          heart.classList.add("heart";
+          heart.innerHTML = "❤️";
+          heart.style.left = Math.random() * window.innerWidth + "px";
+          heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+          document.body.appendChild(heart);
+
+          setTimeout(() => {
+            heart.remove();
+          }, 4000);
+        }
+      });
+    </script>
   </body>
 </html>
